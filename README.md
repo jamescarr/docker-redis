@@ -34,3 +34,9 @@ Or a redis configuration file:
 ```bash
 $ docker run -d -p 6379 -v /tmp/redis:/tmp/redis -e "ARGS=/tmp/redis/redis.conf" redis
 ```
+
+For persistent storage across multiple run use the [Data Volume Container pattern](http://docs.docker.io/use/working_with_volumes/#creating-and-mounting-a-data-volume-container):
+```bash
+$ docker run -v /var/lib/redis -v /var/log/redis --name redis-data busybox true
+$ docker run -d -p 6379 --volumes-from redis-data redis
+```
