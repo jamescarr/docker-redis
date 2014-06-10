@@ -22,6 +22,18 @@ RUN cd /tmp && \
 # Redis configuration files
 ADD etc/redis/redis.conf /etc/redis/redis.conf
 
+# install etcdctl
+ENV ETCD_VERSION 0.4.3
+
+RUN cd /tmp && \
+    wget https://github.com/coreos/etcd/releases/download/v${ETCD_VERSION}/etcd-v${ETCD_VERSION}-linux-amd64.tar.gz && \
+    tar -xzvf etcd-v${ETCD_VERSION}-linux-amd64.tar.gz && \
+    mv etcd-v${ETCD_VERSION}-linux-amd64/etcdctl /usr/local/bin/etcdctl
+RUN chmod +x /usr/local/bin/etcdctl
+
+# Announce service
+ADD bin/services/announce-service.sh /etc/service/announce-service/run
+
 # Create Redis data directory
 RUN mkdir -p /var/lib/redis /var/log/redis /var/run/redis
 
