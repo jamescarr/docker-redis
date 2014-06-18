@@ -15,4 +15,4 @@ fi
 sysctl vm.overcommit_memory=1 > /dev/null
 sysctl -w fs.file-max=100000 > /dev/null
 
-/usr/local/bin/redis-server $ARGS
+exec /usr/local/bin/redis-server $ARGS
