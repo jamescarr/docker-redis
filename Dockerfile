@@ -4,7 +4,7 @@
 #
 
 # Pull base image.
-FROM phusion/baseimage:0.9.9
+FROM phusion/baseimage:0.9.12
 
 ENV LC_ALL C
 ENV DEBIAN_FRONTEND noninteractive
